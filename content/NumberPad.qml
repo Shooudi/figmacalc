@@ -15,7 +15,6 @@ Item {
     id: numberPad
     anchors.fill: parent
     color: "transparent"
-    //color: "black"
 
       GridLayout {
       id: numbers
@@ -24,9 +23,22 @@ Item {
         columnSpacing: controller.spacing
         rowSpacing: controller.spacing
 
-      ActionButton { icon.source: "icon/bkt.svg"; objectName: "bkt"; onReleased: notSupportNotification.show() } // todo brackets
+      ActionButton {
+      id: bktButton
+        icon.source: "icon/bkt.svg"
+
+        onReleased: {
+          calc.openParenthesis();
+        }
+
+        onDoubleClicked: {
+          calc.closeParenthesis();
+        }
+
+      }
+
       ActionButton { icon.source: "icon/plus_minus.svg"; objectName: "neg"; onReleased: calc.negationPressed() }
-      ActionButton { icon.source: "icon/percent.svg"; objectName: "per"; onReleased: calc.percentagePressed() } /////////// todo percent
+      ActionButton { icon.source: "icon/percent.svg"; objectName: "per"; onReleased: calc.percentagePressed() }
 
       ActionButton { icon.source: "icon/division.svg"; objectName: "÷"; onReleased: calc.operatorPressed("÷") }
 

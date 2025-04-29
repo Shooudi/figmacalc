@@ -12,8 +12,8 @@ Button {
     icon.color: "transparent"
     display: Button.IconOnly
 
-    readonly property color buttonColor: "#0889A6" // theme1_2
-    readonly property color buttonDownColor: "#F7E425"// theme1_add_2
+    readonly property color buttonColor: "#0889A6"
+    readonly property color buttonDownColor: "#F7E425"
     readonly property int buttonRadius: 50
     readonly property int fontPointSize: 24
 

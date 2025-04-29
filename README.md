@@ -4,10 +4,16 @@ Figma: https://www.figma.com/design/gJIvIUNBfA1OqMXshPFocu/Calculator_Android?no
 
 # Build
 
-Compilers:
+Qt creator -> create project -> import (Git, master)
+
+Compilers:\
 Desktop Qt 6.9 MinGW 64-bit\
 Android Qt 6.9 Clang arm64-v8a
 
-# ROADMAP (TODO)
-Brackets support\
+# Features
+
+Brackets - click for "(", double-click for ")"\
+
+# TODO
 Android status bar color/theme
+Landscape mode
