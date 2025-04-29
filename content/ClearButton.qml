@@ -7,8 +7,8 @@ Button {
     implicitWidth: 60
     implicitHeight: 60
 
-    readonly property color buttonColor: "#F25E5E" // theme1_5
-    readonly property color buttonTextColor: "#FFFFFF" // theme1_6
+    readonly property color buttonColor: "#F25E5E"
+    readonly property color buttonTextColor: "#FFFFFF"
     readonly property int buttonRadius: 50
     readonly property int fontSize: 24
     readonly property string fontFamily: "Open Sans"

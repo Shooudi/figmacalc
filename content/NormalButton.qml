@@ -1,5 +1,4 @@
 import QtQuick
-//import QtQuick.Layouts
 import QtQuick.Controls.Basic
 
 // digits - Numbers, cancel, dot
@@ -8,10 +7,10 @@ Button {
     implicitWidth: 60
     implicitHeight: 60
 
-    readonly property color buttonColor: "#B0D1D8" // theme1_4
-    readonly property color buttonDownColor: "#04BFAD" // theme1_3
-    readonly property color buttonTextColor: "#024873" // theme1_1
-    readonly property color buttonTextDownColor: "#FFFFFF" // theme1_6
+    readonly property color buttonColor: "#B0D1D8"
+    readonly property color buttonDownColor: "#04BFAD"
+    readonly property color buttonTextColor: "#024873"
+    readonly property color buttonTextDownColor: "#FFFFFF"
     readonly property int buttonRadius: 50
     readonly property int fontSize: 24
     readonly property string fontFamily: "Open Sans"
