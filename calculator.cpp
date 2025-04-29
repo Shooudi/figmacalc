@@ -1,10 +1,11 @@
 #include "calculator.h"
 #include <QDebug>
 
-Calculator::Calculator(QObject *parent) : QObject(parent), m_codeTimer(new QTimer(this))
+Calculator::Calculator(QObject *parent)
+    : QObject(parent)
+    , m_codeTimer(new QTimer(this))
 {
     reset();
-
 
     m_codeTimer->setSingleShot(true);
     m_codeTimer->setInterval(5000);
@@ -30,16 +31,18 @@ bool Calculator::checkingCode() const
     return m_checkingCode;
 }
 
-
-QString Calculator::expression() const {
+QString Calculator::expression() const
+{
     return m_expression;
 }
 
-QString Calculator::result() const {
+QString Calculator::result() const
+{
     return m_result.isEmpty() ? "0" : m_result;
 }
 
-void Calculator::digitPressed(int digit) {
+void Calculator::digitPressed(int digit)
+{
     if (m_checkingCode) {
         m_enteredCode.append(QString::number(digit));
 
@@ -65,7 +68,8 @@ void Calculator::digitPressed(int digit) {
     updateExpression();
 }
 
-void Calculator::operatorPressed(const QString &op) {
+void Calculator::operatorPressed(const QString &op)
+{
     if (m_checkingCode) {
         m_codeTimer->stop();
         resetSecretState();
@@ -88,7 +92,8 @@ void Calculator::operatorPressed(const QString &op) {
     emit expressionChanged();
 }
 
-void Calculator::decimalPressed() {
+void Calculator::decimalPressed()
+{
     if (m_waitingForOperand) {
         m_currentInput = "0";
         m_waitingForOperand = false;
@@ -101,7 +106,8 @@ void Calculator::decimalPressed() {
     }
 }
 
-void Calculator::equalsPressed() {
+void Calculator::equalsPressed()
+{
     if (!m_lastOperation.isEmpty() && !m_waitingForOperand) {
         calculate();
         //m_expression = m_result; // после нажатия "=" будет отображаться результат в верхней и нижней строке
@@ -115,7 +121,6 @@ void Calculator::equalsPressed() {
 void Calculator::handleEqualsPressed(bool isLongPress)
 {
     if (isLongPress) {
-
         m_checkingCode = true;
         m_enteredCode.clear();
         m_codeTimer->start();
@@ -140,20 +145,22 @@ void Calculator::percentagePressed()
     emit expressionChanged();
 }
 
-void Calculator::negationPressed() {
+void Calculator::negationPressed()
+{
     double value = m_currentInput.toDouble();
     m_currentInput = QString::number(-value);
     updateExpression();
 }
 
-void Calculator::clearPressed() {
-
+void Calculator::clearPressed()
+{
     reset();
     emit expressionChanged();
     emit resultChanged();
 }
 
-void Calculator::calculate() {
+void Calculator::calculate()
+{
     double secondOperand = m_currentInput.toDouble();
     double result = 0.0;
 
@@ -179,7 +186,8 @@ void Calculator::calculate() {
     emit resultChanged();
 }
 
-void Calculator::reset() {
+void Calculator::reset()
+{
     m_expression.clear();
     //m_result.clear();
     m_result = "0";
@@ -190,22 +198,22 @@ void Calculator::reset() {
     m_hasDecimal = false;
 }
 
-void Calculator::updateExpression() {
+void Calculator::updateExpression()
+{
     if (m_waitingForOperand) {
         m_expression = m_currentInput;
     } else {
-
         int lastOpPos = -1;
-        for (int i = m_expression.length()-1; i >= 0; --i) {
-            if (m_expression.at(i) == "+" || m_expression.at(i) == "-" ||
-                m_expression.at(i) == "×" || m_expression.at(i) == "÷") {
+        for (int i = m_expression.length() - 1; i >= 0; --i) {
+            if (m_expression.at(i) == "+" || m_expression.at(i) == "-" || m_expression.at(i) == "×"
+                || m_expression.at(i) == "÷") {
                 lastOpPos = i;
                 break;
             }
         }
 
         if (lastOpPos >= 0) {
-            m_expression = m_expression.left(lastOpPos+1) + m_currentInput;
+            m_expression = m_expression.left(lastOpPos + 1) + m_currentInput;
         } else {
             m_expression = m_currentInput;
         }

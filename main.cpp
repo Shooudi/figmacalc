@@ -5,10 +5,8 @@
 
 int main(int argc, char *argv[])
 {
-
     QCoreApplication::setOrganizationName("Shoudi");
     QCoreApplication::setApplicationName("figmacalc");
-
 
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
@@ -16,10 +14,12 @@ int main(int argc, char *argv[])
     Calculator calculator;
     engine.rootContext()->setContextProperty("calc", &calculator);
 
-
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
-                     &app, []() { QCoreApplication::exit(-1); },
-                     Qt::QueuedConnection);
+    QObject::connect(
+        &engine,
+        &QQmlApplicationEngine::objectCreationFailed,
+        &app,
+        []() { QCoreApplication::exit(-1); },
+        Qt::QueuedConnection);
 
     //engine.load(QUrl(QStringLiteral("qrc:/Main.qml")));
     engine.loadFromModule("figmacalc", "Main");
