@@ -3,7 +3,7 @@
 
 #include <QObject>
 //#include <QString>
-#include <QDateTime>////
+#include <QDateTime> ////
 #include <QTimer>
 
 class Calculator : public QObject
@@ -19,7 +19,7 @@ public:
 
     QString expression() const;
     QString result() const;
-    bool checkingCode() const;////
+    bool checkingCode() const; ////
 
 public slots:
     void digitPressed(int digit);
@@ -35,16 +35,16 @@ public slots:
 signals:
     void expressionChanged();
     void resultChanged();
-    void secretStateChanged();////
+    void secretStateChanged(); ////
 
-    void secretCodeActivated();////
-    void secretPageRequested();////
+    void secretCodeActivated(); ////
+    void secretPageRequested(); ////
 
 private:
     void calculate();
     void reset();
     void updateExpression();
-    void resetSecretState();////
+    void resetSecretState(); ////
 
     QString m_expression;
     QString m_result;
@@ -57,7 +57,7 @@ private:
 
     QString m_enteredCode;
     bool m_checkingCode;
-    QTimer* m_codeTimer;
+    QTimer *m_codeTimer;
 };
 
 #endif // CALCULATOR_H
